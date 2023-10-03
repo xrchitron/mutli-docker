@@ -14,3 +14,10 @@ after_success:
   - docker build -t xrchitron/multi-nginx ./nginx
   - docker build -t xrchitron/multi-server ./server
   - docker build -t xrchitron/multi-worker ./worker
+  #Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  #Take those images and push them to docker hub
+  - docker push xrchitron/multi-client
+  - docker push xrchitron/multi-nginx
+  - docker push xrchitron/multi-server
+  - docker push xrchitron/multi-worker
