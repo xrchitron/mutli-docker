@@ -21,3 +21,15 @@ after_success:
   - docker push xrchitron/multi-nginx
   - docker push xrchitron/multi-server
   - docker push xrchitron/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'ap-northeast-1'
+  app: 'multi-docker'
+  env: 'Mutli-docker-env'
+  bucket_name: 'elasticbeanstalk-ap-northeast-1-343534424551'
+  bucket_path: 'docker-multi'
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
